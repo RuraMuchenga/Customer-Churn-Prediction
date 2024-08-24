@@ -48,7 +48,7 @@ print("Gradient Boosting Accuracy:", accuracy_score(y_test, gb_pred))
 print("Gradient Boosting Classification Report:")
 print(classification_report(y_test, gb_pred))
 
-# Confusion Matrix for the best model (example using Gradient Boosting)
+
 conf_matrix = confusion_matrix(y_test, gb_pred)
 sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
 plt.title('Confusion Matrix')
@@ -56,7 +56,7 @@ plt.xlabel('Predicted')
 plt.ylabel('Actual')
 plt.show()
 
-# Feature importance for Gradient Boosting
+
 if hasattr(gb, 'feature_importances_'):
     feature_importance = pd.Series(gb.feature_importances_, index=X.columns)
     feature_importance.sort_values(ascending=False).plot(kind='bar', title='Feature Importance')

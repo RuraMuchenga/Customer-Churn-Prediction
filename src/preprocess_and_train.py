@@ -4,29 +4,28 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 
-# Load the dataset
+
 data = pd.read_csv('customer_data.csv')
 
-# Handle missing values
+
 data = data.dropna()
 
-# Encode categorical variables
+
 label_encoder = LabelEncoder()
 data['Gender'] = label_encoder.fit_transform(data['Gender'])
 
-# Feature scaling
 scaler = StandardScaler()
 numeric_features = ['Customer_Age', 'Balance', 'Num_of_Products']
 data[numeric_features] = scaler.fit_transform(data[numeric_features])
 
-# Split data into features and target
+
 X = data.drop('Churn', axis=1)
 y = data['Churn']
 
-# Split data into training and testing sets
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Train models
+
 log_reg = LogisticRegression()
 log_reg.fit(X_train, y_train)
 
@@ -36,7 +35,7 @@ rf.fit(X_train, y_train)
 gb = GradientBoostingClassifier()
 gb.fit(X_train, y_train)
 
-# Save models (optional, if needed)
+
 import joblib
 joblib.dump(log_reg, 'log_reg_model.pkl')
 joblib.dump(rf, 'rf_model.pkl')
